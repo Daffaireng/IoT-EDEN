@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard EDEN - Mobility Heatmap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f4f7f6; }
+        .header { text-align: center; margin-bottom: 20px; }
+        #map { height: 500px; width: 100%; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .status-box { margin-top: 15px; padding: 15px; background: white; border-radius: 8px; text-align: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>🗺️ EDEN: Campus Mobility Heatmap</h2>
+        <p>Pemantauan Kepadatan Pejalan Kaki Real-Time (Mode AP)</p>
+    </div>
+
+    <div id="map"></div>
+
+    <div class="status-box" id="status-text">
+        Menghubungkan ke ESP32...
+    </div>
+
+    <script>
+        var map = L.map('map').setView([-7.4626, 110.2163], 17);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        var zonaSensor = L.circle([-7.4626, 110.2163], {
+            color: '#28a745',
+            fillColor: '#28a745',
+            fillOpacity: 0.6,
+            radius: 40
+        }).addTo(map);
+
+        // IP default Access Point ESP32
+        const espIP = "http://192.168.4.1/data";
+
+        async function perbaruiData() {
+            try {
+                const response = await fetch(espIP);
+                const data = await response.json();
+                const jumlahOrang = data.jumlahOrang;
+
+                let warnaZona = "";
+                let statusKepadatan = "";
+
+                if (jumlahOrang < 5) {
+                    warnaZona = "#28a745"; // Hijau
+                    statusKepadatan = "Sepi & Lancar";
+                } else if (jumlahOrang >= 5 && jumlahOrang < 10) {
+                    warnaZona = "#ffc107"; // Kuning
+                    statusKepadatan = "Mulai Ramai";
+                } else {
+                    warnaZona = "#dc3545"; // Merah
+                    statusKepadatan = "Padat (Panas)";
+                }
+
+                zonaSensor.setStyle({ color: warnaZona, fillColor: warnaZona });
+                zonaSensor.bindPopup(`<b>Zona Lorong Fakultas</b><br>Total: ${jumlahOrang} orang<br>Status: ${statusKepadatan}`);
+
+                document.getElementById('status-text').innerHTML = 
+                    `Status Lorong Saat Ini: <span style="color: ${warnaZona};">${statusKepadatan} (${jumlahOrang} orang)</span>`;
+            } catch (err) {
+                document.getElementById('status-text').innerHTML = 
+                    `<span style="color: red;">Gagal terhubung ke ESP32. Pastikan laptop connect ke WiFi EDEN_ESP32!</span>`;
+            }
+        }
+
+        setInterval(perbaruiData, 1000);
+        perbaruiData();
+    </script>
+</body>
+</html>
