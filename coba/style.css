@@ -1,0 +1,265 @@
+/* VARIABEL CSS */
+:root {
+  --bg-halaman: #f1f5f9;
+  --bg-kartu: #ffffff;
+  --teks-utama: #0f172a;
+  --teks-sekunder: #475569;
+  --warna-utama: #2563eb;
+  --warna-hover: #dbeafe;
+  --garis-batas: #e2e8f0;
+  
+  --ukuran-huruf: 16px;
+  --ukuran-ikon: 20px;
+}
+
+body.mode-gelap {
+  --bg-halaman: #0f172a;
+  --bg-kartu: #1e293b;
+  --teks-utama: #f8fafc;
+  --teks-sekunder: #94a3b8;
+  --warna-utama: #3b82f6;
+  --warna-hover: #334155;
+  --garis-batas: #334155;
+}
+
+/* PENGATURAN DASAR */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-halaman);
+  color: var(--teks-utama);
+  font-size: var(--ukuran-huruf);
+  transition: background-color 0.25s, color 0.25s;
+}
+
+svg {
+  width: var(--ukuran-ikon);
+  height: var(--ukuran-ikon);
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: width 0.2s, height 0.2s;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-kartu);
+  padding: 15px 30px;
+  border-bottom: 1px solid var(--garis-batas);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.3em;
+  color: var(--warna-utama);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: var(--teks-sekunder);
+  font-size: 1em;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+
+.menu-btn:hover {
+  background-color: var(--warna-hover);
+  color: var(--warna-utama);
+}
+
+.menu-btn.aktif {
+  background-color: var(--warna-utama);
+  color: #ffffff;
+}
+
+/* DROPDOWN SUB-MENU ABOUT */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-isi {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 115%;
+  background-color: var(--bg-kartu);
+  min-width: 190px;
+  border-radius: 10px;
+  border: 1px solid var(--garis-batas);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  z-index: 200;
+}
+
+.dropdown-isi.tampil {
+  display: block;
+}
+
+.dropdown-isi button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--teks-utama);
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.95em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+
+.dropdown-isi button:hover {
+  background-color: var(--warna-hover);
+  color: var(--warna-utama);
+}
+
+/* KONTEN HALAMAN */
+.wadah {
+  max-width: 750px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.halaman {
+  display: none;
+  background-color: var(--bg-kartu);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid var(--garis-batas);
+}
+
+.halaman.aktif {
+  display: block;
+}
+
+.judul-halaman {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.deskripsi {
+  color: var(--teks-sekunder);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.label-kecil {
+  font-size: 0.85em;
+  color: var(--teks-sekunder);
+}
+
+/* DASHBOARD & HISTORY */
+.grid-kartu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.kartu-info {
+  background-color: var(--bg-halaman);
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid var(--garis-batas);
+}
+
+.daftar-riwayat {
+  list-style: none;
+  border-top: 1px solid var(--garis-batas);
+}
+
+.daftar-riwayat li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--garis-batas);
+  font-size: 0.95em;
+}
+
+/* SETTING */
+.baris-setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid var(--garis-batas);
+  gap: 15px;
+}
+
+.tombol-tema {
+  background-color: var(--bg-halaman);
+  color: var(--teks-utama);
+  border: 1px solid var(--garis-batas);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tombol-tema:hover {
+  border-color: var(--warna-utama);
+}
+
+.kontrol-geser {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type="range"] {
+  cursor: pointer;
+  accent-color: var(--warna-utama);
+}
+
+/* RESPONSIF HP */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .menu-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .dropdown-isi {
+    right: auto;
+    left: 0;
+  }
+  .grid-kartu {
+    grid-template-columns: 1fr;
+  }
+  .baris-setting {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

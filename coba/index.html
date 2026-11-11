@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplikasi Web Lengkap</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo" onclick="bukaMenu('dashboard')">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 7.5l-10-5V17l10 5 10-5V4.5l-10 5z"/></svg>
+      <span>AppKu</span>
+    </div>
+
+    <ul class="menu-list">
+      <li>
+        <button class="menu-btn aktif" id="btn-dashboard" onclick="bukaMenu('dashboard')">
+          <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+          Dashboard
+        </button>
+      </li>
+      <li>
+        <button class="menu-btn" id="btn-history" onclick="bukaMenu('history')">
+          <svg viewBox="0 0 24 24"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+          History
+        </button>
+      </li>
+      <li>
+        <button class="menu-btn" id="btn-setting" onclick="bukaMenu('setting')">
+          <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+          Setting
+        </button>
+      </li>
+      
+      <!-- MENU ABOUT DENGAN 2 SUB-MENU (DROPDOWN) -->
+      <li class="dropdown">
+        <button class="menu-btn" id="btn-about" onclick="toggleDropdown(event)">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          About ▾
+        </button>
+        <div class="dropdown-isi" id="menuDropdownAbout">
+          <button onclick="bukaMenu('about-product', true)">📦 About Product</button>
+          <button onclick="bukaMenu('about-us', true)">👥 About Us</button>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- KONTEN HALAMAN -->
+  <main class="wadah">
+    
+    <!-- 1. HALAMAN DASHBOARD -->
+    <section id="dashboard" class="halaman aktif">
+      <h1 class="judul-halaman">
+        <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        Dashboard Utama
+      </h1>
+      <p class="deskripsi">Ringkasan aktivitas dan status sistem Anda hari ini.</p>
+      
+      <div class="grid-kartu">
+        <div class="kartu-info">
+          <span class="label-kecil">Total Aktivitas</span>
+          <h2>128</h2>
+        </div>
+        <div class="kartu-info">
+          <span class="label-kecil">Status Sistem</span>
+          <h2 style="color: #16a34a;">Aktif</h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. HALAMAN HISTORY -->
+    <section id="history" class="halaman">
+      <h1 class="judul-halaman">
+        <svg viewBox="0 0 24 24"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+        Riwayat Aktivitas (History)
+      </h1>
+      <p class="deskripsi">Catatan perubahan dan kunjungan menu terakhir Anda.</p>
+
+      <ul class="daftar-riwayat" id="listRiwayat">
+        <li>Aplikasi berhasil dibuka.</li>
+      </ul>
+    </section>
+
+    <!-- 3. HALAMAN SETTING -->
+    <section id="setting" class="halaman">
+      <h1 class="judul-halaman">
+        <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        Pengaturan (Setting)
+      </h1>
+      <p class="deskripsi">Ubah tampilan aplikasi sesuai kenyamanan mata Anda.</p>
+
+      <div class="baris-setting">
+        <div>
+          <strong>Mode Tampilan</strong>
+          <div class="label-kecil">Ganti antara tema terang atau gelap</div>
+        </div>
+        <button class="tombol-tema" onclick="gantiTema()" id="btnTema">
+          🌙 Aktifkan Mode Gelap
+        </button>
+      </div>
+
+      <div class="baris-setting">
+        <div>
+          <strong>Ukuran Huruf (<span id="labelHuruf">16px</span>)</strong>
+          <div class="label-kecil">Geser untuk memperbesar atau memperkecil teks</div>
+        </div>
+        <div class="kontrol-geser">
+          <span>Kecil</span>
+          <input type="range" id="sliderHuruf" min="12" max="24" value="16" oninput="aturHuruf(this.value)">
+          <span>Besar</span>
+        </div>
+      </div>
+
+      <div class="baris-setting">
+        <div>
+          <strong>Ukuran Ikon (<span id="labelIkon">20px</span>)</strong>
+          <div class="label-kecil">Geser untuk mengubah ukuran semua ikon</div>
+        </div>
+        <div class="kontrol-geser">
+          <span>Kecil</span>
+          <input type="range" id="sliderIkon" min="14" max="34" value="20" oninput="aturIkon(this.value)">
+          <span>Besar</span>
+        </div>
+      </div>
+
+      <div class="baris-setting">
+        <div>
+          <strong>Kembalikan Pengaturan</strong>
+          <div class="label-kecil">Reset ukuran huruf, ikon, dan tema ke awal</div>
+        </div>
+        <button class="tombol-tema" onclick="resetPengaturan()">🔄 Reset</button>
+      </div>
+    </section>
+
+    <!-- 4A. SUB-HALAMAN ABOUT PRODUCT -->
+    <section id="about-product" class="halaman">
+      <h1 class="judul-halaman">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+        About Product
+      </h1>
+      <p class="deskripsi">Informasi detail mengenai fitur dan spesifikasi produk aplikasi ini.</p>
+      
+      <div class="kartu-info" style="margin-bottom: 15px;">
+        <h3 style="margin-bottom: 8px;">AppKu Versi 1.0</h3>
+        <p style="line-height: 1.6;">AppKu adalah platform antarmuka ringan yang dirancang dengan fitur aksesibilitas penuh, memungkinkan pengguna mengatur ukuran teks, skala ikon, dan mode gelap secara mandiri.</p>
+      </div>
+
+      <div class="grid-kartu">
+        <div class="kartu-info">
+          <strong>Keunggulan Utama</strong>
+          <p class="label-kecil" style="margin-top: 5px;">Tanpa ketergantungan internet, cepat, dan responsif di layar HP maupun laptop.</p>
+        </div>
+        <div class="kartu-info">
+          <strong>Teknologi</strong>
+          <p class="label-kecil" style="margin-top: 5px;">Dibangun dengan HTML5, CSS Variables, dan Vanilla JavaScript.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4B. SUB-HALAMAN ABOUT US -->
+    <section id="about-us" class="halaman">
+      <h1 class="judul-halaman">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        About Us
+      </h1>
+      <p class="deskripsi">Mengenal lebih dekat tim pengembang di balik layar.</p>
+      
+      <div class="kartu-info">
+        <h3 style="margin-bottom: 8px;">Visi & Misi Great Northern</h3>
+        <p style="line-height: 1.6; margin-bottom: 12px;">Great Northern berfokus menciptakan pengalaman pengguna yang akurat, real time, dan nyaman.</p>
+        <p class="label-kecil"><strong>Kontak Tim:</strong> thegreatnorthern@app.id | Twin Peaks, Washington</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
